@@ -36,7 +36,7 @@ Naming follows the standard library convention. Naming rules are enforced by
 
 | Construct                 | Convention                 | Example                            |
 | ------------------------- | -------------------------- | ---------------------------------- |
-| Namespaces                | `snake_case`               | `hal::lpc40`                       |
+| Namespaces                | `snake_case`               | `hal::msp0`                        |
 | Types and classes         | `snake_case`               | `output_pin`, `i2c_bus`            |
 | Template parameters       | `CamelCase`                | `Container`, `WordType`            |
 | Functions and methods     | `snake_case`               | `driver_read()`, `set_level()`     |
@@ -745,6 +745,7 @@ struct register_map {
 
 ### S.10.3 Obtain the register pointer via `reinterpret_cast`
 
+<!-- TODO(kammce): Decide to either provide bit_modify OR require everyone to use direct/raw bitwise operators -->
 Declare the peripheral base address as a `constexpr std::uintptr_t` and cast
 it to a pointer once. Store and pass the typed pointer, never the raw integer.
 
