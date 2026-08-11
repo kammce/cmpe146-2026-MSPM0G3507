@@ -745,7 +745,6 @@ struct register_map {
 
 ### S.10.3 Obtain the register pointer via `reinterpret_cast`
 
-<!-- TODO(kammce): Decide to either provide bit_modify OR require everyone to use direct/raw bitwise operators -->
 Declare the peripheral base address as a `constexpr std::uintptr_t` and cast
 it to a pointer once. Store and pass the typed pointer, never the raw integer.
 

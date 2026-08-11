@@ -1,9 +1,14 @@
 # Lab 1 - GPIO Driver (No RTOS)
 
-This is the full walkthrough for Lab 1. For the graded rubric itself, see
-[lab_instructions.md](lab_instructions.md) - that file is the grading
-contract and should be treated as the source of truth if anything here
-seems to disagree with it.
+In this lab you will:
+
+1. Install the IDE (Code Composer Studio).
+2. Write a GPIO driver from scratch using the reference material - TI
+   DriverLib is not allowed.
+3. Demonstrate control over an RGB LED based on user input.
+
+This document is the complete assignment: what to build, how it's
+graded, and how to get started.
 
 ## Overview
 
@@ -71,26 +76,33 @@ to you and some things are not:
   and IOMUX from the TRM,
 - The button → LED color logic in `lab1_gpio.cpp`'s `main()`.
 
-## Steps
+## Grading Rubric
 
-1. **Toolchain setup (10 pts).** Install CCS along with the **MSPM0-SDK**
+You have **3 weeks** to complete this lab, worth **50 points** total:
+
+1. **Toolchain setup - 10 pts.** Install CCS along with the **MSPM0-SDK**
    (2.10.00.04) and **SysConfig** products - these are what let CCS
    resolve this project's `${COM_TI_MSPM0_SDK_*}` build variables. Then
    import the `cmpe146-2026-MSPM0G3507` repo as a new workspace folder,
-   build this project, and flash/debug it as-is. The starter code already
-   calls `SYSCFG_DL_init()` and prints `"Hello, World"`.
-1. **GPIO driver (prerequisite for the 20 pt blinker demo).** Write a
-   concrete class that implements the `gpio` interface (`gpio.hpp`) using
-   direct register access, storing the registers you need as member
-   variables. See [Reference material](#reference-material) below for
-   where to find the register definitions, and `style.md` §S.10 for how
-   to structure the register-map code.
-1. **Blinker demo (20 pts).** In `lab1_gpio.cpp`, use your concrete
-   `gpio` implementation to implement the button/LED behavior described
-   in the rubric: S1 and S2 each select a color, holding both blinks the
-   LED, and you should be able to change a color, rebuild, and reflash on
-   request during the demo.
-1. **Code review (20 pts).** Submit a PR to your git repo targeting your
+   build this project, and flash/debug it as-is. Minimum required work
+   for points: the application prints `"Hello, World"` - the starter
+   code already does this via `SYSCFG_DL_init()` and `std::printf`.
+1. **GPIO driver - prerequisite for the blinker demonstration below, not
+   separately graded.** Write a concrete class that implements the
+   `gpio` interface (`gpio.hpp`) using direct register access, storing
+   the registers you need as member variables. See
+   [Reference material](#reference-material) below for where to find the
+   register definitions, and `style.md` §S.10 for how to structure the
+   register-map code.
+1. **Blinker demonstration - 20 pts.** Using your concrete `gpio`
+   implementation in `lab1_gpio.cpp`:
+   - Pressing S1 turns the RGB LED to a color (any color).
+   - Pressing S2 turns the RGB LED to a different color than S1.
+   - Holding both at the same time blinks the RGB LED.
+   - The instructor will request that one of the colors be changed
+     during the demo - you're responsible for changing it, rebuilding,
+     and reflashing to show the new color works.
+1. **Code review - 20 pts.** Submit a PR to your git repo targeting your
    `main` branch.
 
 ## Reference material
@@ -121,8 +133,7 @@ lab1_gpio/
 ├── lab1_gpio.cpp                                   main() - calls into gpio.hpp to implement the lab behavior
 ├── gpio.hpp                                        Pure virtual gpio interface - given, don't modify
 ├── gpio.cpp                                        Your concrete class implementing gpio.hpp - graded
-├── lab_instructions.md                             Grading rubric
-└── README.md                                       This file
+└── README.md                                       This file, including the grading rubric
 ```
 
 ## IOMux Hint

@@ -14,8 +14,11 @@ int main(void)
   // push-buttons (S1, S2) as inputs using the gpio:: driver you write in
   // gpio.cpp. See README.md for pin assignments and reference material.
 
+  // TIP: the switches need pull resistor. See the user schematic of the launch
+  // pad for which is needed for S1 and S2.
+
   while (true) {
     // TODO(lab1, step 2): implement the button -> LED color behavior
-    // described in lab_instructions.md.
+    // described in README.md
   }
 }
