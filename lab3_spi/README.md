@@ -1,0 +1,71 @@
+# Lab 3 - SPI
+
+In this lab you will:
+
+1. Implement an SPI driver from scratch - TI DriverLib is not allowed.
+2. Use it to talk to a NOR flash memory chip over SPI.
+
+This document is the complete assignment: what to build, how it's
+graded, and how to get started.
+
+## Overview
+
+Write an SPI driver against the `spi` interface (`spi.hpp`), then use it
+to:
+
+1. Read and print the flash chip's manufacturer ID.
+2. Read and print its memory capacity.
+3. Read and print the first 32-byte block.
+4. Take user input and write up to 32 bytes to that same block.
+
+## Learning Objectives
+
+- Implement an SPI driver from scratch, with a configurable bit rate.
+- Drive a chip-select line with a plain GPIO output pin.
+- Talk to a real SPI device (NOR flash) using your own driver.
+
+## Hardware
+
+Board: [LP-MSPM0G3507 LaunchPad](https://www.ti.com/tool/LP-MSPM0G3507).
+Which SPI instance/pins you use is up to you - check the datasheet's
+pin-to-peripheral function table for which pins carry SPI0/SPI1 signals,
+and drive chip-select with a plain `output_pin`.
+
+NOR flash part: Winbond W25Q32JV (32 Mbit SPI NOR flash).
+
+## Grading Rubric (60 pt)
+
+1. **SPI signaling - 15 pts.** Produces correct signals on the
+   out/in/clock lines at the bit rate the application configures.
+2. **ID + capacity - 15 pts.** Reads and prints both the manufacturer ID
+   and memory capacity.
+3. **Block read - 10 pts.** Reads and prints the first 32 bytes of the
+   device.
+4. **Block write - 10 pts.** Takes user input and writes up to 32 bytes
+   to that first block.
+5. **Code submission - 10 pts.** Submit a PR to your git repo targeting
+   your `main` branch.
+
+## Reference material
+
+- **[MSPM0G3507 datasheet](https://www.ti.com/lit/ds/symlink/mspm0g3507.pdf)** -
+  pin-to-peripheral function table for SPI pins.
+- **[MSPM0G350x Technical Reference Manual](https://www.ti.com/lit/ug/slau846e/slau846e.pdf)** -
+  SPI chapter.
+- **[Winbond W25Q32JV datasheet](https://www.mouser.com/datasheet/2/949/w25q32jv_revg_03272018_plus-1489806.pdf)** -
+  the NOR flash chip for this lab. Look for the JEDEC ID command
+  (`0x9F`) for manufacturer/capacity, and the standard read/page-program
+  commands.
+
+## Project layout
+
+```text
+lab3_spi/
+├── .project, .cproject, .ccsproject, .settings/   CCS project metadata - generated/maintained by CCS, don't hand-edit
+├── targetConfigs/                                 Debug probe + device configuration (XDS110, MSPM0G3507)
+├── lab3_spi.syscfg                                SysConfig: clock tree + SWD debug pins only (no GPIO/SPI - that's your job)
+├── lab3_spi.cpp                                    main() - talks to the NOR flash using your spi + gpio drivers
+├── gpio.hpp                                        output_pin / input_pin interfaces (given, empty for now)
+├── spi.hpp                                          spi interface (given, empty for now)
+└── README.md                                       This file, including the grading rubric
+```
