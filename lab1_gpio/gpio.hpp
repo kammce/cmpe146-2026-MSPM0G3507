@@ -17,7 +17,7 @@ namespace gpio {
  * used.
  *
  */
-enum class pin_resistor  // NOLINT(performance-enum-size)
+enum class pin_resistor : uint8_t
 {
   /// No pull up. This will cause the pin to float. This may be desirable if the
   /// pin has an external resistor attached or if the signal is sensitive to
@@ -120,7 +120,7 @@ public:
    * @return true - if the settings are valid
    * @return false - if the settings could not be achieved
    */
-  void configure(settings const& p_settings)
+  bool configure(settings const& p_settings)
   {
     driver_configure(p_settings);
   }
@@ -137,7 +137,7 @@ public:
   }
 
   /**
-   * @brief
+   * @brief Read the current state of the output pin from hardware
    *
    * Implementations must read the pin state from hardware and will not simply
    * cache the results from the execution of `level(bool)`.
