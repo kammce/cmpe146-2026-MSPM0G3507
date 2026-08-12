@@ -50,35 +50,7 @@ to find exactly which ones yourself from the
 [LP-MSPM0G3507 LaunchPad (Dev Board) User's Guide](https://www.ti.com/lit/slau873)
 (TI literature number SLAU873).
 
-## What's "from scratch" and what isn't
-
-To keep this from turning into a research project, some things are given
-to you and some things are not:
-
-**Given (not graded):**
-
-- The project's build/debug scaffolding (`.project`, `.cproject`,
-  `.ccsproject`, `targetConfigs/`) - CCS-managed, don't hand-edit these.
-- Clock tree setup and the SWD debug pins, via `lab1_gpio.syscfg`.
-- Which physical pin each LED color lives on (a fixed hardware fact, not
-  a software design decision).
-- `main()`'s overall shape in `lab1_gpio.cpp`.
-- The `gpio` pure-virtual interface in `gpio.hpp` - the contract your
-  class must satisfy.
-
-**Yours to write (graded):**
-
-- A concrete class in `gpio.cpp` that implements every function in the
-  `gpio` interface, storing the register pointers/addresses it needs as
-  member variables.
-- Finding the S1/S2 button pins from the LaunchPad User's Guide.
-- Finding the actual register addresses/offsets and bit fields for GPIO
-  and IOMUX from the TRM,
-- The button → LED color logic in `lab1_gpio.cpp`'s `main()`.
-
-## Grading Rubric
-
-You have **3 weeks** to complete this lab, worth **50 points** total:
+## Grading Rubric (50 pt)
 
 1. **Toolchain setup - 10 pts.** Install CCS along with the **MSPM0-SDK**
    (2.10.00.04) and **SysConfig** products - these are what let CCS
@@ -87,41 +59,37 @@ You have **3 weeks** to complete this lab, worth **50 points** total:
    build this project, and flash/debug it as-is. Minimum required work
    for points: the application prints `"Hello, World"` - the starter
    code already does this via `SYSCFG_DL_init()` and `std::printf`.
-1. **GPIO driver - prerequisite for the blinker demonstration below, not
-   separately graded.** Write a concrete class that implements the
-   `gpio` interface (`gpio.hpp`) using direct register access, storing
-   the registers you need as member variables. See
-   [Reference material](#reference-material) below for where to find the
-   register definitions, and `style.md` §S.10 for how to structure the
-   register-map code.
-1. **Blinker demonstration - 20 pts.** Using your concrete `gpio`
-   implementation in `lab1_gpio.cpp`:
+1. **Implement `output_pin` driver for MSPM0G3507 - 10 pts** - Write a concrete
+   class that implements the `output_pin` interface.
+1. **Implement `input_pin` driver for MSPM0G3507 - 10 pts** - Write a concrete
+   class that implements the `input_pin` interface.
+1. **Switch Sense & LED Control demonstration - 10 pts.** Using your gpio
+   drivers:
    - Pressing S1 turns the RGB LED to a color (any color).
    - Pressing S2 turns the RGB LED to a different color than S1.
-   - Holding both at the same time blinks the RGB LED.
+   - Pressing both switches turns the RGB to a 3rd color.
    - The instructor will request that one of the colors be changed
-     during the demo - you're responsible for changing it, rebuilding,
-     and reflashing to show the new color works.
-1. **Code review - 20 pts.** Submit a PR to your git repo targeting your
+     during the demo and you are responsible for demonstrate that you can
+     changing the color, rebuild, and reflash, and demonstrate that the new
+     color is working.
+1. **Code review - 10 pts.** Submit a PR to your git repo targeting your
    `main` branch.
 
 ## Reference material
 
-- **MSPM0G350x Technical Reference Manual** - General Purpose
-  Input/Output (GPIO) chapter and Input/Output Multiplexer (IOMUX)
-  chapter. This is where the register offsets and bit fields you need
-  actually live.
-- **MSPM0G3507 datasheet** - pin-to-peripheral function table, and the
-  GPIO/IOMUX electrical characteristics.
+- **[MSPM0G350x Technical Reference Manual](https://www.ti.com/lit/ug/slau846e/slau846e.pdf)** -
+  General Purpose Input/Output (GPIO) chapter and Input/Output
+  Multiplexer (IOMUX) chapter. This is where the register offsets and
+  bit fields you need actually live.
+- **[MSPM0G3507 datasheet](https://www.ti.com/lit/ds/symlink/mspm0g3507.pdf)** -
+  pin-to-peripheral function table, and the GPIO/IOMUX electrical
+  characteristics.
 - **[LP-MSPM0G3507 User's Guide](https://www.ti.com/lit/slau873)** -
   on-board LED/button wiring and BoosterPack pinout.
 - **`style.md` §S.10 (Memory-Mapped I/O)** - the pattern this codebase
   uses for declaring and accessing hardware registers safely
   (`volatile` register-map structs, `reinterpret_cast` from a named
   `constexpr` base address, scoped to an anonymous namespace).
-- **Not allowed:** `ti/driverlib/dl_gpio.h`, any `DL_GPIO_*` call, or
-  adding a GPIO module back into `lab1_gpio.syscfg`. If your solution
-  includes any of those, it doesn't satisfy "from scratch."
 
 ## Project layout
 
@@ -136,7 +104,7 @@ lab1_gpio/
 └── README.md                                       This file, including the grading rubric
 ```
 
-## IOMux Hint
+## HINT: IOMUX
 
 The IOMUX value for GPIO is `1`. Its only stated in one area in the datasheet
 in section `6.4 Connections for Unused Pins` that the IOMUX value for the GPIO

@@ -23,6 +23,13 @@
         "slau",
         "MSPM",
         "reflash",
-        "reflashing"
+        "reflashing",
+        "Taiko",
+        "Tatsujin",
+        "BPM",
+        "GPTIMER",
+        "NVIC",
+        "debouncing",
+        "Armv6"
     ]
 }

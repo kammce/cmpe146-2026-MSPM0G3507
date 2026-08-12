@@ -1,6 +1,6 @@
 #pragma once
 
-namespace lab1 {
+namespace lab2 {
 
 class output_pin
 {
@@ -10,4 +10,4 @@ class input_pin
 {
 };
 
-}  // namespace lab1
+}  // namespace lab2
