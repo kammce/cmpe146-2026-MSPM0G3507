@@ -1,4 +1,4 @@
-# Lab 1 - GPIO Driver (No RTOS)
+# Lab 1 - GPIO Driver
 
 In this lab you will:
 
@@ -12,9 +12,9 @@ graded, and how to get started.
 
 ## Overview
 
-You will build a minimal GPIO driver for the MSPM0G3507 **directly against
-its registers** - no TI DriverLib, no SysConfig-generated pin init - and
-use it to read two push-buttons and drive an RGB LED. This is the
+You will build a minimal GPIO driver for the MSPM0G3507 directly against its
+registers. Do not use the TI DriverLib or no SysConfig-generated pin init. Use
+the driver to read two push-buttons and drive an RGB LED. This is the
 foundational bare-metal skill for the rest of the course: given a
 datasheet and a Technical Reference Manual (TRM), you should be able to
 find the memory-mapped registers that control a peripheral and drive them
