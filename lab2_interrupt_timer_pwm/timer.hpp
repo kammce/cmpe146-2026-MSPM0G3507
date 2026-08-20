@@ -1,9 +1,17 @@
 #pragma once
 
-#include "gpio.hpp"
 #include <cstdint>
 
 namespace lab2 {
+class edge_triggered_callback
+{
+  /**
+   * @brief The callback invoked after an edge trigger on a pin has occurred
+   *
+   * @param p_state - the current logical state of the pin with
+   */
+  virtual void callback(bool p_state) = 0;
+};
 
 /**
  * @brief Digital edge triggered interrupt pin hardware abstraction
@@ -43,6 +51,27 @@ public:
      *
      */
     both = 2,
+  };
+
+  /**
+   * @brief Set of possible pin mode resistor settings.
+   *
+   * See each enumeration to get more details about when and how these should be
+   * used.
+   *
+   */
+  enum class pin_resistor : uint8_t
+  {
+    /// No pull up. This will cause the pin to float. This may be desirable if
+    /// the pin has an external resistor attached or if the signal is sensitive
+    /// to external devices like resistors.
+    none = 0,
+    /// Pull the pin down to devices GND. This will ensure that the voltage read
+    /// by the pin when there is no signal on the pin is LOW (or false).
+    pull_down,
+    /// See pull down explanation, but in this case the pin is pulled up to VCC,
+    /// also called VDD on some systems.
+    pull_up,
   };
 
   /**
@@ -100,9 +129,10 @@ public:
    *
    * Any state transitions before this function is called are lost.
    *
-   * @param p_callback - function to execute when the trigger condition occurs.
+   * @param p_callback - function to execute when the trigger condition occurs,
+   * or nullptr to disable interrupt
    */
-  void on_trigger(hal::callback<handler> p_callback)
+  void on_trigger(edge_triggered_callback* const& p_callback)
   {
     driver_on_trigger(p_callback);
   }
@@ -111,7 +141,8 @@ public:
 
 private:
   virtual void driver_configure(settings const& p_settings) = 0;
-  virtual void driver_on_trigger(hal::callback<handler> p_callback) = 0;
+  virtual void driver_on_trigger(
+    edge_triggered_callback* const& p_callback) = 0;
 };
 
 /**
