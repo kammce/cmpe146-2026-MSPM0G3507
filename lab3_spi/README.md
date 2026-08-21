@@ -1,12 +1,13 @@
-# Lab 3 - SPI
+# Lab 3 - SPI Flash Memory
 
-In this lab you will:
+Let consider this lab as a product that needs some additional features of.
+Our research team has reported differences in performance based on flash memory
+sizes, so they have asked that we include logs of the flash memory manufacturer
+ID as well as its capacity is. It is your job to implement the needed parts to
+communicate with the flash memory and to report the necessary information.
 
-1. Implement an SPI driver from scratch - TI DriverLib is not allowed.
+1. Implement an SPI driver from scratch
 2. Use it to talk to a NOR flash memory chip over SPI.
-
-This document is the complete assignment: what to build, how it's
-graded, and how to get started.
 
 ## Overview
 
@@ -17,6 +18,9 @@ to:
 2. Read and print its memory capacity.
 3. Read and print the first 32-byte block.
 4. Take user input and write up to 32 bytes to that same block.
+
+Each of these should be its own class function (or set of class functions)
+added to the `flash_memory` driver within the `lab3_spi.cpp` file.
 
 ## Learning Objectives
 
@@ -31,7 +35,7 @@ Which SPI instance/pins you use is up to you - check the datasheet's
 pin-to-peripheral function table for which pins carry SPI0/SPI1 signals,
 and drive chip-select with a plain `output_pin`.
 
-NOR flash part: Winbond W25Q32JV (32 Mbit SPI NOR flash).
+NOR flash part: Winbond W25Q32JV - 32 Mbit SPI NOR flash or similar.
 
 ## Grading Rubric (60 pt)
 

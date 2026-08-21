@@ -107,12 +107,13 @@ You have **3 weeks** to complete this lab, worth **50 points** total:
 
 ## Reference material
 
-- **MSPM0G350x Technical Reference Manual** - General Purpose
-  Input/Output (GPIO) chapter and Input/Output Multiplexer (IOMUX)
-  chapter. This is where the register offsets and bit fields you need
+- **[MSPM0G350x Technical Reference Manual](https://www.ti.com/lit/ug/slau846/slau846.pdf)** -
+  General Purpose Input/Output (GPIO) chapter and Input/Output Multiplexer
+  (IOMUX) chapter. This is where the register offsets and bit fields you need
   actually live.
-- **MSPM0G3507 datasheet** - pin-to-peripheral function table, and the
-  GPIO/IOMUX electrical characteristics.
+- **[MSPM0G3507 datasheet](https://www.ti.com/lit/ds/symlink/mspm0g3507.pdf)** -
+  IOMUX pin-to-peripheral function table, electrical
+  characteristics, peripheral memory map.
 - **[LP-MSPM0G3507 User's Guide](https://www.ti.com/lit/slau873)** -
   on-board LED/button wiring and BoosterPack pinout.
 - **`style.md` §S.10 (Memory-Mapped I/O)** - the pattern this codebase

@@ -5,6 +5,22 @@
 #include "gpio.hpp"
 #include "spi.hpp"
 
+class flash_memory
+{
+public:
+  flash_memory(lab3::spi* p_spi, lab3::output_pin* p_chip_select)
+    : m_spi(p_spi)
+    , m_chip_select(p_chip_select)
+  {
+  }
+
+  // Add the rest of your APIs here...
+
+private:
+  lab3::spi* m_spi = nullptr;
+  lab3::output_pin* m_chip_select = nullptr;
+};
+
 int main(void)
 {
   SYSCFG_DL_init();
