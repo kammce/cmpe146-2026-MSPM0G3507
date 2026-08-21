@@ -55,7 +55,7 @@ public:
    */
   bool configure(settings const& p_settings)
   {
-    driver_configure(p_settings);
+    return driver_configure(p_settings);
   }
 
   /**
@@ -72,7 +72,7 @@ public:
   virtual ~input_pin() = default;
 
 private:
-  virtual void driver_configure(settings const& p_settings) = 0;
+  virtual bool driver_configure(settings const& p_settings) = 0;
   virtual bool driver_level() = 0;
 };
 
@@ -114,7 +114,7 @@ public:
    */
   bool configure(settings const& p_settings)
   {
-    driver_configure(p_settings);
+    return driver_configure(p_settings);
   }
 
   /**
@@ -148,7 +148,7 @@ public:
   virtual ~output_pin() = default;
 
 private:
-  virtual void driver_configure(settings const& p_settings) = 0;
+  virtual bool driver_configure(settings const& p_settings) = 0;
   virtual void driver_level(bool p_high) = 0;
   virtual bool driver_level() = 0;
 };
@@ -252,7 +252,7 @@ public:
    */
   bool configure(settings const& p_settings)
   {
-    driver_configure(p_settings);
+    return driver_configure(p_settings);
   }
 
   /**
@@ -271,7 +271,7 @@ public:
   virtual ~edge_triggered_pin() = default;
 
 private:
-  virtual void driver_configure(settings const& p_settings) = 0;
+  virtual bool driver_configure(settings const& p_settings) = 0;
   virtual void driver_on_trigger(edge_triggered_callback* p_callback) = 0;
 };
 }  // namespace lab2
