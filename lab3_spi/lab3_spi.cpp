@@ -5,35 +5,48 @@
 #include "gpio.hpp"
 #include "spi.hpp"
 
+/**
+ * @brief Generic SPI flash memory driver
+ *
+ * This driver works with common SPI flash memory with JEDEC ID
+ * This driver needs both an SPI peripheral and an output pin for chip select.
+ */
 class flash_memory
 {
 public:
+  /**
+   * @brief Construct a new flash memory object
+   *
+   * @param p_spi - spi port connected to the spi flash memory
+   * @param p_chip_select - pin connected to spi flash memory chip select
+   */
   flash_memory(lab3::spi* p_spi, lab3::output_pin* p_chip_select)
     : m_spi(p_spi)
     , m_chip_select(p_chip_select)
   {
   }
 
-  // Add the rest of your APIs here...
+  // TODO(lab3, step 2): Add APIs to access various parts of the flash memory as
+  // required by the lab.
 
 private:
   lab3::spi* m_spi = nullptr;
   lab3::output_pin* m_chip_select = nullptr;
 };
 
-int main(void)
+int main()
 {
   SYSCFG_DL_init();
 
   std::printf("Hello, World\n");
 
-  // TODO(lab3, step 2): Configure the SPI signal pins and the flash
-  // chip's chip-select pin (gpio.hpp), then use spi.hpp to talk to the
-  // NOR flash: read + print the manufacturer ID and capacity, read +
-  // print the first 32-byte block, then take user input and write up to
-  // 32 bytes to that block.
+  // TODO(lab3, step 3): Construct an spi driver object and gpio driver object
+  // in order to construct a flash memory object. Use the flash memory object to
+  // retrieve and print the manufacturer ID, capacity, and the first 32-byte
+  // block of the flash memory. Then take user input and write up to 32 bytes to
+  // that block.
 
   while (true) {
-    // TODO(lab3, step 2): application loop.
+    continue;  // loop here forever
   }
 }
