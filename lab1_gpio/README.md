@@ -1,4 +1,4 @@
-# Lab 1 - GPIO Driver (No RTOS)
+# Lab 1 - GPIO Driver
 
 In this lab you will:
 
@@ -12,9 +12,9 @@ graded, and how to get started.
 
 ## Overview
 
-You will build a minimal GPIO driver for the MSPM0G3507 **directly against
-its registers** - no TI DriverLib, no SysConfig-generated pin init - and
-use it to read two push-buttons and drive an RGB LED. This is the
+You will build a minimal GPIO driver for the MSPM0G3507 directly against its
+registers. Do not use the TI DriverLib or no SysConfig-generated pin init. Use
+the driver to read two push-buttons and drive an RGB LED. This is the
 foundational bare-metal skill for the rest of the course: given a
 datasheet and a Technical Reference Manual (TRM), you should be able to
 find the memory-mapped registers that control a peripheral and drive them
@@ -77,13 +77,13 @@ to find exactly which ones yourself from the
 
 ## Reference material
 
-- **[MSPM0G350x Technical Reference Manual](https://www.ti.com/lit/ug/slau846e/slau846e.pdf)** -
-  General Purpose Input/Output (GPIO) chapter and Input/Output
-  Multiplexer (IOMUX) chapter. This is where the register offsets and
-  bit fields you need actually live.
+- **[MSPM0G350x Technical Reference Manual](https://www.ti.com/lit/ug/slau846/slau846.pdf)** -
+  General Purpose Input/Output (GPIO) chapter and Input/Output Multiplexer
+  (IOMUX) chapter. This is where the register offsets and bit fields you need
+  actually live.
 - **[MSPM0G3507 datasheet](https://www.ti.com/lit/ds/symlink/mspm0g3507.pdf)** -
-  pin-to-peripheral function table, and the GPIO/IOMUX electrical
-  characteristics.
+  IOMUX pin-to-peripheral function table, electrical
+  characteristics, peripheral memory map.
 - **[LP-MSPM0G3507 User's Guide](https://www.ti.com/lit/slau873)** -
   on-board LED/button wiring and BoosterPack pinout.
 - **`style.md` §S.10 (Memory-Mapped I/O)** - the pattern this codebase
