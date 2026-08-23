@@ -60,16 +60,3 @@ NOR flash part: Winbond W25Q32JV - 32 Mbit SPI NOR flash or similar.
   the NOR flash chip for this lab. Look for the JEDEC ID command
   (`0x9F`) for manufacturer/capacity, and the standard read/page-program
   commands.
-
-## Project layout
-
-```text
-lab3_spi/
-├── .project, .cproject, .ccsproject, .settings/   CCS project metadata - generated/maintained by CCS, don't hand-edit
-├── targetConfigs/                                 Debug probe + device configuration (XDS110, MSPM0G3507)
-├── lab3_spi.syscfg                                SysConfig: clock tree + SWD debug pins only (no GPIO/SPI - that's your job)
-├── lab3_spi.cpp                                    main() - talks to the NOR flash using your spi + gpio drivers
-├── gpio.hpp                                        output_pin / input_pin interfaces (given, empty for now)
-├── spi.hpp                                          spi interface (given, empty for now)
-└── README.md                                       This file, including the grading rubric
-```
