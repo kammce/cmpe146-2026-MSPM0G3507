@@ -1,17 +1,13 @@
 #include <cstdio>
 
-// #include "ti_msp_dl_config.h"
+#include "../hal/gpio.hpp"
 
-#include "gpio.hpp"
-
-const char readme[] = {
- #embed "README.md" limit(128)
+char const readme[] = {
+#embed "README.md" limit(128)
 };
 
-int main(void)
+int main()
 {
-  // SYSCFG_DL_init();
-
   std::printf("Hello, World\n");
   std::printf("%s\n", readme);
 

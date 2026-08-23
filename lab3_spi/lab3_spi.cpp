@@ -1,9 +1,7 @@
 #include <cstdio>
 
-#include "ti_msp_dl_config.h"
-
-#include "gpio.hpp"
-#include "spi.hpp"
+#include "../hal/gpio.hpp"
+#include "../hal/spi.hpp"
 
 /**
  * @brief Generic SPI flash memory driver
@@ -36,8 +34,6 @@ private:
 
 int main()
 {
-  SYSCFG_DL_init();
-
   std::printf("Hello, World\n");
 
   // TODO(lab3, step 3): Construct an spi driver object and gpio driver object

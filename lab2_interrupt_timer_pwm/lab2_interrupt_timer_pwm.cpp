@@ -1,13 +1,10 @@
 #include <cstdio>
 
-#include "ti_msp_dl_config.h"
+#include "../hal/gpio.hpp"
+#include "../hal/timer.hpp"
 
-#include "gpio.hpp"
-#include "timer.hpp"
-
-int main(void)
+int main()
 {
-  SYSCFG_DL_init();
 
   std::printf("Hello, World\n");
 
