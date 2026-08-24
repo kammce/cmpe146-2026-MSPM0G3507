@@ -2,14 +2,9 @@
 
 #include "../hal/gpio.hpp"
 
-char const readme[] = {
-#embed "README.md" limit(128)
-};
-
 int main()
 {
   std::printf("Hello, World\n");
-  std::printf("%s\n", readme);
 
   // TODO(lab1, step 2): Configure the RGB LED pins as outputs and the two
   // push-buttons (S1, S2) as inputs using the gpio:: driver you write in
