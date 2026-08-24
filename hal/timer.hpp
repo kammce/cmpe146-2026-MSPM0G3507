@@ -31,10 +31,10 @@ public:
   /**
    * @brief Get the operating frequency of the steady clock
    *
-   * @return uint32_t - operating frequency of the steady clock. Guaranteed to
-   * be a positive value by the implementing driver.
+   * @return std::uint32_t - operating frequency of the steady clock. Guaranteed
+   * to be a positive value by the implementing driver.
    */
-  [[nodiscard]] uint32_t frequency()
+  [[nodiscard]] std::uint32_t frequency()
   {
     return driver_frequency();
   }
@@ -42,19 +42,17 @@ public:
   /**
    * @brief Get the current value of the steady clock
    *
-   * @return uint64_t - Number of counts that the steady clock has counted
+   * @return std::uint64_t - Number of counts that the steady clock has counted
    * since it started.
    */
-  [[nodiscard]] uint64_t uptime()
+  [[nodiscard]] std::uint64_t uptime()
   {
     return driver_uptime();
   }
 
-  virtual ~steady_clock() = default;
-
 private:
-  virtual uint32_t driver_frequency() = 0;
-  virtual uint64_t driver_uptime() = 0;
+  virtual std::uint32_t driver_frequency() = 0;
+  virtual std::uint64_t driver_uptime() = 0;
 };
 
 /**
@@ -93,9 +91,9 @@ public:
   /**
    * @brief Returns the frequency of this pwm channel
    *
-   * @returns uint32_t - frequency in hertz as an unsigned integer
+   * @returns std::uint32_t - frequency in hertz as an unsigned integer
    */
-  uint32_t frequency()
+  std::uint32_t frequency()
   {
     return driver_frequency();
   }
@@ -116,15 +114,13 @@ public:
    * @param p_duty_cycle - a value from 0 to 65535 representing the duty
    * cycle percentage.
    */
-  void duty_cycle(uint16_t p_duty_cycle)
+  void duty_cycle(std::uint16_t p_duty_cycle)
   {
     driver_duty_cycle(p_duty_cycle);
   }
 
-  virtual ~pwm() = default;
-
 private:
-  virtual uint32_t driver_frequency() = 0;
-  virtual void driver_duty_cycle(uint16_t p_duty_cycle) = 0;
+  virtual std::uint32_t driver_frequency() = 0;
+  virtual void driver_duty_cycle(std::uint16_t p_duty_cycle) = 0;
 };
 }  // namespace lab2

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstdint>
+
 namespace lab1 {
 
 /**
@@ -37,12 +39,6 @@ public:
   {
     /// Pull resistor for an input pin
     pin_resistor resistor = pin_resistor::pull_up;
-
-    /**
-     * @brief Enables default comparison
-     *
-     */
-    bool operator<=>(settings const&) const = default;
   };
 
   /**
@@ -69,8 +65,6 @@ public:
     return driver_level();
   }
 
-  virtual ~input_pin() = default;
-
 private:
   virtual bool driver_configure(settings const& p_settings) = 0;
   virtual bool driver_level() = 0;
@@ -96,12 +90,6 @@ public:
     /// Starting level of the output pin. HIGH voltage defined as true and LOW
     /// voltage defined as false.
     bool open_drain = false;
-
-    /**
-     * @brief Enables default comparison
-     *
-     */
-    bool operator<=>(settings const&) const = default;
   };
 
   /**
@@ -144,8 +132,6 @@ public:
   {
     return driver_level();
   }
-
-  virtual ~output_pin() = default;
 
 private:
   virtual bool driver_configure(settings const& p_settings) = 0;
