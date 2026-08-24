@@ -3,7 +3,6 @@
 #include <cstdint>
 
 namespace lab1 {
-
 /**
  * @brief Set of possible pin mode resistor settings.
  *
