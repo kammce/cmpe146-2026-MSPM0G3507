@@ -192,8 +192,7 @@ template<typename T>
     reinterpret_cast<std::byte const*>(p_span.data()), p_span.size_bytes());
 }
 
-template<typename T,
-         typename = std::enable_if_t<!std::is_const_v<T>>>
+template<typename T, typename = std::enable_if_t<!std::is_const_v<T>>>
 [[nodiscard]] span<std::byte> as_writable_bytes(span<T> p_span) noexcept
 {
   return span<std::byte>(reinterpret_cast<std::byte*>(p_span.data()),
