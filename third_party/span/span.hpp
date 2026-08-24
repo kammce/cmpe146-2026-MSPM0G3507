@@ -7,12 +7,11 @@
 //
 // Hand-written for this course to mirror the std::span API documented at
 // https://en.cppreference.com/w/cpp/container/span - construction, iterators,
-// element access, size_bytes, first/last/subspan, and CTAD - so that
-// reference page applies directly to code using this header. The one
-// deliberate gap: std::span's compile-time Extent template parameter is not
-// implemented, so every span here behaves like std::span<T, dynamic_extent>.
-// as_bytes/as_writable_bytes are also not provided, since drivers in this
-// course don't need them.
+// element access, size_bytes, first/last/subspan, as_bytes/as_writable_bytes,
+// and CTAD - so that reference page applies directly to code using this
+// header. The one deliberate gap: std::span's compile-time Extent template
+// parameter is not implemented, so every span here behaves like
+// std::span<T, dynamic_extent>.
 
 #if defined(__cpp_lib_span)
 
@@ -183,6 +182,23 @@ template<
   typename Container,
   typename = std::enable_if_t<!hal_is_span<std::remove_cv_t<Container>>::value>>
 span(Container&) -> span<typename Container::value_type>;
+
+// Not constexpr: reinterpret_cast is not permitted in a constexpr context,
+// same restriction the real std::span::as_bytes/as_writable_bytes are under.
+template<typename T>
+[[nodiscard]] span<std::byte const> as_bytes(span<T> p_span) noexcept
+{
+  return span<std::byte const>(
+    reinterpret_cast<std::byte const*>(p_span.data()), p_span.size_bytes());
+}
+
+template<typename T,
+         typename = std::enable_if_t<!std::is_const_v<T>>>
+[[nodiscard]] span<std::byte> as_writable_bytes(span<T> p_span) noexcept
+{
+  return span<std::byte>(reinterpret_cast<std::byte*>(p_span.data()),
+                         p_span.size_bytes());
+}
 
 }  // namespace std
 
