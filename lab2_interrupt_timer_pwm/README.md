@@ -93,18 +93,3 @@ multiple times before settling - each vibration fires the interrupt
 again. Accept all of them and the game fails on the first press.
 Disable the edge interrupt after the first pulse, then re-enable it on
 the next LED color cycle.
-
-## Project layout
-
-```text
-lab2_interrupt_timer_pwm/
-├── .project, .cproject, .ccsproject, .settings/   CCS project metadata - generated/maintained by CCS, don't hand-edit
-├── targetConfigs/                                 Debug probe + device configuration (XDS110, MSPM0G3507)
-├── lab2_interrupt_timer_pwm.syscfg                SysConfig: clock tree + SWD debug pins only (no GPIO/timer/interrupt - that's your job)
-├── lab2_interrupt_timer_pwm.cpp                   main() - game loop, wires the four drivers together
-├── gpio.hpp / gpio.cpp                            GPIO interface (given) / your implementation (carried forward from lab1, graded)
-├── clock.hpp / clock.cpp                          Steady clock interface (given) / your implementation (graded)
-├── interrupt.hpp / interrupt.cpp                  Edge interrupt interface (given) / your implementation (graded)
-├── pwm.hpp / pwm.cpp                              PWM interface (given) / your implementation (graded)
-└── README.md                                      This file, including the grading rubric
-```

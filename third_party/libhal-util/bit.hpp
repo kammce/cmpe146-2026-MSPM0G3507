@@ -637,8 +637,6 @@ public:
     return m_value;
   }
 
-  constexpr bool operator==(bit_value const&) const = default;
-
 protected:
   T m_value;
 };

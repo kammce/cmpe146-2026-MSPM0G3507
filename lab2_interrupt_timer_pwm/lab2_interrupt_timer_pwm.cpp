@@ -8,9 +8,9 @@ int main()
 
   std::printf("Hello, World\n");
 
-  // TODO(lab2, step 2): Configure the RGB LED pins as outputs (gpio.hpp),
-  // S1/S2 as edge-triggered interrupt inputs (interrupt.hpp), a PWM
-  // output (pwm.hpp), and a time base (clock.hpp).
+  // TODO(lab2, step 2): Configure the RGB LED pins as outputs and S1/S2 as
+  // edge-triggered interrupt inputs (both in gpio.hpp), then a PWM output
+  // and a time base (both in timer.hpp).
 
   // TODO(lab2, step 3): Wait for the first button press, then run the
   // rhythm game loop described in README.md: cycle the LED through the

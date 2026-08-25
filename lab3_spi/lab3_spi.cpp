@@ -18,7 +18,7 @@ public:
    * @param p_spi - spi port connected to the spi flash memory
    * @param p_chip_select - pin connected to spi flash memory chip select
    */
-  flash_memory(lab3::spi* p_spi, lab3::output_pin* p_chip_select)
+  flash_memory(lab3::spi* p_spi, lab1::output_pin* p_chip_select)
     : m_spi(p_spi)
     , m_chip_select(p_chip_select)
   {
@@ -29,7 +29,7 @@ public:
 
 private:
   lab3::spi* m_spi = nullptr;
-  lab3::output_pin* m_chip_select = nullptr;
+  lab1::output_pin* m_chip_select = nullptr;
 };
 
 int main()
