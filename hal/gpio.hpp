@@ -137,4 +137,96 @@ private:
   virtual void driver_level(bool p_high) = 0;
   virtual bool driver_level() = 0;
 };
+
+/**
+ * @brief Callback interface for `edge_triggered_interrupt`.
+ *
+ * Implement this interface and pass a pointer to it to
+ * `edge_triggered_interrupt::on_trigger()` to be notified when the pin's
+ * configured trigger condition occurs.
+ *
+ */
+struct edge_triggered_callback
+{
+  /**
+   * @brief Invoked after the pin's configured trigger edge has occurred
+   *
+   * @param p_state - true if the pin's state was HIGH when the interrupt was
+   * triggered, false if it was LOW.
+   */
+  virtual void callback(bool p_state) = 0;
+};
+
+/**
+ * @brief Digital interrupt pin hardware abstraction.
+ *
+ * Use this to automatically call a function when a pin's state transitions.
+ *
+ * The transition states are:
+ *
+ *   - falling edge: the pin reads a transition from HIGH to LOW
+ *   - rising edge: the pin reads a transition from LOW to HIGH
+ *   - both: the pin reads any state change
+ *
+ */
+class edge_triggered_interrupt
+{
+public:
+  /**
+   * @brief The condition in which an interrupt is triggered.
+   *
+   */
+  enum class trigger_edge : uint8_t
+  {
+    /// Trigger the interrupt when a pin transitions from HIGH to LOW.
+    falling = 0,
+    /// Trigger the interrupt when a pin transitions from LOW to HIGH.
+    rising,
+    /// Trigger the interrupt when a pin transitions state in either direction.
+    both,
+  };
+
+  /// Generic settings for interrupt pins
+  struct settings
+  {
+    /// Pull resistor for the interrupt pin. It is highly advised to set this
+    /// to something other than `none`, or to attach an external pull
+    /// resistor, in order to prevent spurious interrupts from firing.
+    pin_resistor resistor = pin_resistor::pull_up;
+
+    /// The trigger condition that will invoke the callback.
+    trigger_edge trigger = trigger_edge::rising;
+  };
+
+  /**
+   * @brief Configure the interrupt pin to match the settings supplied
+   *
+   * @param p_settings - settings to apply to interrupt pin
+   * @return true - if the settings are valid
+   * @return false - if the settings could not be achieved
+   */
+  bool configure(settings const& p_settings)
+  {
+    return driver_configure(p_settings);
+  }
+
+  /**
+   * @brief Set the callback to run when the interrupt triggers
+   *
+   * Any state transitions that occur before this function is called are
+   * lost.
+   *
+   * @param p_callback - object whose `callback()` is invoked when the
+   * trigger condition occurs. Pass `nullptr` to clear a previously set
+   * callback.
+   */
+  void on_trigger(edge_triggered_callback* p_callback)
+  {
+    driver_on_trigger(p_callback);
+  }
+
+private:
+  virtual bool driver_configure(settings const& p_settings) = 0;
+  virtual void driver_on_trigger(edge_triggered_callback* p_callback) = 0;
+};
 }  // namespace lab1

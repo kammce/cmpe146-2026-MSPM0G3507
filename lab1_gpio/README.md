@@ -98,10 +98,11 @@ lab1_gpio/
 ├── .project, .cproject, .ccsproject, .settings/   CCS project metadata - generated/maintained by CCS, don't hand-edit
 ├── targetConfigs/                                 Debug probe + device configuration (XDS110, MSPM0G3507)
 ├── lab1_gpio.syscfg                                SysConfig: clock tree + SWD debug pins only (no GPIO - that's your job)
-├── lab1_gpio.cpp                                   main() - calls into gpio.hpp to implement the lab behavior
-├── gpio.hpp                                        Pure virtual gpio interface - given, don't modify
-├── gpio.cpp                                        Your concrete class implementing gpio.hpp - graded
-└── README.md                                       This file, including the grading rubric
+└── lab1_gpio.cpp                                   main() - write your input_pin/output_pin classes and the lab
+                                                     behavior here, against the interface in ../hal/gpio.hpp
+
+../hal/gpio.hpp                                     Pure virtual input_pin/output_pin interfaces - given, don't modify.
+                                                     Shared across all labs, not copied per-lab.
 ```
 
 ## HINT: IOMUX
