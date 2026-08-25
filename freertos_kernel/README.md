@@ -10,5 +10,5 @@ FreeRTOS examples.
 Please refer to the FreeRTOS Kernel section in the MSPM0 SDK User's
 Guide for the details on how applications use this project.
 
-Tools->Runtime Object View now supports FreeRTOS. See MSP Academy's 
+Tools->Runtime Object View now supports FreeRTOS. See MSP Academy's
 FreeRTOS lab for more details.
