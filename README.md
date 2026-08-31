@@ -15,16 +15,17 @@ repo's folder:
    the Explorer overflow menu) to open `cmpe146_mspm0g3507.theia-workspace`
    from the folder you cloned this repo into.
 
-CCS Theia only allows one project of a given name per open workspace. Every
-lab in this repo is named `labN_*` to match the same lab in the sibling
-[cmpe146-2026-MSP-EXP432P401R](https://github.com/kammce/cmpe146-2026-MSP-EXP432P401R)
-repo, so if you add this repo's folder into a workspace that already has that
-repo's folder in it (e.g. via "Add Folder to Workspace" on a parent
-directory), CCS will refuse to load whichever lab loads second because the
-name collides. Opening this repo's own `.theia-workspace` file instead avoids
-that entirely, since it scopes the session to only this repo's projects. Note
-that CCS Theia only supports one open workspace at a time - switch workspace
-files when you move between this repo and the MSP-EXP432P401R one.
+> [!NOTE] 
+> CCS Theia only allows one project of a given name per open workspace. Every
+> lab in this repo is named `labN_*` to match the same lab in the sibling
+> [cmpe146-2026-MSP-EXP432P401R](https://github.com/kammce/cmpe146-2026-MSP-EXP432P401R)
+> repo, so if you add this repo's folder into a workspace that already has that
+> repo's folder in it (e.g. via "Add Folder to Workspace" on a parent
+> directory), CCS will refuse to load whichever lab loads second because the
+> name collides. Opening this repo's own `.theia-workspace` file instead avoids
+> that entirely, since it scopes the session to only this repo's projects. Note
+> that CCS Theia only supports one open workspace at a time - switch workspace
+> files when you move between this repo and the MSP-EXP432P401R one.
 
 ## Repository layout
 
