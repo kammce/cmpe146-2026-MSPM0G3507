@@ -14,10 +14,10 @@
  * Import the modules used in this configuration.
  *
  * Only clock tree (SYSCTL) and the on-board debug pins (Board) are
- * configured here. UART and the CRC accelerator are intentionally left out
- * - you are writing those drivers by hand for this lab (DriverLib calls are
- * allowed inside the UART driver's implementation, but the peripherals are
- * not SysConfig-generated).
+ * configured here. The ADC, UART, and CRC accelerator are intentionally
+ * left out - you are writing those drivers by hand, register-level, for
+ * this lab. No DriverLib calls are used anywhere in this lab, including
+ * inside the drivers' own implementations.
  */
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
 
