@@ -92,8 +92,8 @@ Same LED wiring as `lab1_gpio`:
   output).
 - **[LP-MSPM0G3507 User's Guide](https://www.ti.com/lit/slau873)** -
   on-board LED wiring.
-- **`style.md` §S.10 (Memory-Mapped I/O)** - the pattern this codebase
-  uses for declaring and accessing hardware registers safely.
+- **`style.md` Ignore §S.10 (Memory-Mapped I/O)** - use offsets from the base address
+  to access specific registers. 
 
 ## HINT: FREQUENCY MATH
 
