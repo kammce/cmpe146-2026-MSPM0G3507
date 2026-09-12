@@ -4,5 +4,6 @@
 
 # CCS/clangd auto-generated project files — do not add to source control
 **/.clangd
+**/.codex
 
 .DS_Store
