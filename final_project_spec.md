@@ -6,9 +6,9 @@ Build an interactive embedded system of your team's choosing on the MSPM0G3507 o
 
 - **Team size:** 4–5 (your Lab 5 team)
 - **Duration:** 5 weeks
-- **Weight:** 45% of the course grade
-- **P****re****s****entatio****n**** ****D****a****y****:** before finals week Dec 2nd (Wednesday) & 3rd (Thursday)
-- **Presentation ****d****urati****on****:**&#32;
+- **Weight:** 15% of the course grade
+- **Presentation Day:** before finals week Dec 2nd (Wednesday) & 3rd (Thursday)
+- **Presentation Duration**:
   - 5 to 10 minutes for slides
   - 5 minutes to live demo the project
 
